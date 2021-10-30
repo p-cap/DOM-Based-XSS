@@ -1,0 +1,74 @@
+
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap" rel="stylesheet">
+	</head>
+		
+	<body>
+		<div class="center">
+			<h1>DOM XSS Site</h1>
+			<small>by Paul "P-cap" Capili</small>
+			
+			<h2>Synopsis</h2>
+				<p>According to OWASP, DOM-based is an XSS attack wherein the attack payload is executed as a result 
+				of modifying the DOM “environment” in the victim’s browser used by the original client side script, 
+				so that the client side code runs in an “unexpected” manner. 
+				</p>
+				<h2>How to Exploit the Site</h2>
+			<ul>
+				<li>
+					Insert a script tag in as query string
+				</li>
+				<li>
+					Append the payload at the end of the url
+				</li>
+				<li>
+					<strong>PAYLOAD:</strong> ?=&#60script&gtalert(1)&lt/script&gt
+				</li>
+			</ul>
+	
+			<h2>Reference</h2>
+			<ul>
+				<li>
+					DOM Based XSS <br>
+					<a href="https://owasp.org/www-community/attacks/DOM_Based_XSS">https://owasp.org/www-community/attacks/DOM_Based_XSS</a>
+				</li>
+				<li>
+					decodeURIComponent <br>
+					<a href="https://www.w3schools.com/jsref/jsref_decodeURIComponent.asp ">https://www.w3schools.com/jsref/jsref_decodeURIComponent.asp</a>
+				</li>
+				<li>
+					HTML escape characters | Example code <br>
+					<a href="https://tutorial.eyehunts.com/html/html-escape-characters-example-code/">https://tutorial.eyehunts.com/html/html-escape-characters-example-code/</a>		
+				</li>
+			</ul>
+			<payload></payload>
+		</div>	
+	</body>
+
+	<style>
+		div.center {
+  			text-align: center;
+			margin: 2rem 20rem;
+		}
+
+		ul {
+			text-align: left;	
+		}
+		
+		body {
+			font-family: 'Zen Kaku Gothic Antique', sans-serif;
+		}
+		
+	</style>
+	<script>
+		var uri_dec = decodeURIComponent(document.location.href.substring(document.location.href.indexOf("test")))
+		document.write("<h3>The output of the decoded uri string</h3>")
+		document.write(uri_dec)
+	</script>
+</html>
+
+
